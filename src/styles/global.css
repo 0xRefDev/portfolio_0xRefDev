@@ -1,1 +1,60 @@
 @import "tailwindcss";
+
+@theme {
+  --base-color: #2A2929;
+  --color-primary: #000;
+  --color-secondary: #fff;
+  --primary-blue: #0F1A38;
+  --secondary-blue: #38BDF8;
+  --tertiary-blue: #23414E;
+  --lang-button-border: #0F1A3830;
+  --scheme-mode-button: #241F51;
+  --graffiti-stripe: #E86048;
+  --experience-card: #FFFFFF02;
+  --experience-card-selected: #FFFFFF10;
+  --experience-card-border: #FFFFFF10;
+  --project-card: #151515;
+  --project-card-stroke: #262626;
+  --project-card-text: #D4D4D4;
+  --project-card-button-icon: #464F66;
+  --skills-table-bg: #303030;
+  --skills-table-stroke: #FFFFFF20;
+  --contact-me-button: #504D7B;
+  --open-twork-button: #628C5A;
+
+  --font-modak: "Modak";
+  --font-outfit: "Outfit";
+}
+
+@font-face {
+  font-family: 'Modak';
+  src: url('/fonts/Modak/Modak-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Outfit';
+  src: url('/fonts/Outfit/Outfit-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Outfit';
+  src: url('/fonts/Outfit/Outfit-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Outfit';
+  src: url('/fonts/Outfit/Outfit-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Outfit';
+  src: url('/fonts/Outfit/Outfit-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
