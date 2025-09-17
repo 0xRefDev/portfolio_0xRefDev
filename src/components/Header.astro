@@ -1,0 +1,71 @@
+---
+import PORTRAIT from "@/assets/images/PORTRAIT.webp";
+
+import { links } from "@/lib/data";
+
+import Star from "@/icons/Star.astro";
+
+// Components
+import { ChangeLanguage } from "./Header/ChangeLanguage.jsx";
+import { AsideMenuButton } from "./Header/AsideMenuButton.jsx";
+import Button from "@/components/Button.astro";
+---
+
+<header
+  id="main-header"
+  class="fixed top-0 z-50 w-full flex h-[70px] transition-colors duration-[100ms] overflow-hidden"
+>
+  <section class="flex items-center gap-2 p-4">
+    <img
+      src={PORTRAIT.src}
+      alt="Portrait logo - 0xRef.dev"
+      class="hidden sm:block w-12 h-auto aspect-square rounded-full"
+    />
+    <h1
+      class="font-modak text-shadow-2xs text-shadow-[#000] text-[24px] transition-colors duration-300"
+      id="0x-title"
+    >
+      0xRef.dev
+    </h1>
+  </section>
+  <section
+    id="secondary-header"
+    class="flex flex-1 justify-end pr-1 md:justify-between md:pl-8 md:pr-2 items-center bg-white w-full h-full rounded-bl-full"
+  >
+    <article class="hidden md:flex gap-2 justify-self-start">
+      {
+        links.map(({ href, text }) => (
+          <a
+            href={href}
+            class="font-regular font-outfit text-md text-[#0F1A38] flex gap-1 lg:gap-2 items-center"
+          >
+            <Star width="25" height="25" />
+            {text}
+          </a>
+        ))
+      }
+    </article>
+
+    <article class="flex gap-1">
+      <ChangeLanguage client:visible />
+      <AsideMenuButton client:visible />
+    </article>
+  </section>
+</header>
+
+
+<script is:inline>
+  const header = document.getElementById("main-header");
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 0) {
+      header.classList.add("bg-[#FFF]/10");
+      header.classList.add("shadow-lg");
+      header.classList.add("backdrop-blur-sm");
+    } else {
+      header.classList.remove("bg-[#FFF]/10");
+      header.classList.remove("shadow-lg");
+      header.classList.remove("backdrop-blur-sm");
+    }
+  });
+</script>
