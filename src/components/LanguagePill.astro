@@ -1,0 +1,58 @@
+---
+interface Props {
+  language: string;
+  pclass: string;
+  withIcon?: boolean;
+  iconName?: string;
+}
+
+const { language, pclass, withIcon, iconName } = Astro.props;
+
+import Css from "@/icons/techs/Css.astro";
+import Html from "@/icons/techs/Html.astro";
+import Js from "@/icons/techs/JS.astro";
+import Php from "@/icons/techs/Php.astro";
+import React from "@/icons/techs/React.astro";
+import Tailwind from "@/icons/techs/Tailwind.astro";
+import Node from "@/icons/techs/Node.astro";
+import Express from "@/icons/techs/Express.astro";
+import Mysql from "@/icons/techs/Mysql.astro";
+
+const icons: Record<string, any> = {
+  css: Css,
+  html: Html,
+  javascript: Js,
+  js: Js,
+  php: Php,
+  react: React,
+  tailwind: Tailwind,
+  tailwindcss: Tailwind,
+  node: Node,
+  nodejs: Node,
+  express: Express,
+  mysql: Mysql,
+};
+
+const iconKey = iconName || language.toLowerCase();
+const IconComponent = icons[iconKey];
+
+console.log("LanguagePill Debug:", {
+  language,
+  iconName,
+  iconKey,
+  exists: !!IconComponent,
+});
+---
+
+<div
+  class={`${pclass} w-fit px-2 py-1 rounded-full border-2 border-project-card-stroke-pill flex items-center gap-2 select-none`}
+>
+  {
+    withIcon && IconComponent ? (
+      <div class="w-4 h-4 flex items-center justify-center">
+        <IconComponent />
+      </div>
+    ) : null
+  }
+  <span>{language || "🚧"}</span>
+</div>
