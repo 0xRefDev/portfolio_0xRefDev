@@ -3,29 +3,31 @@
 @theme {
   --base-color: #2A2929;
 
-  --primary-blue: #0F1A38;
-  --secondary-blue: #38BDF8;
-  --tertiary-blue: #23414E;
+  --color-primary-blue: #0F1A38;
+  --color-secondary-blue: #38BDF8;
+  --color-tertiary-blue: #23414E;
 
-  --lang-button-border: #0F1A3830;
-  --scheme-mode-button: #241F51;
+  --color-lang-button-border: #0F1A3830;
+  --color-scheme-mode-button: #241F51;
 
-  --graffiti-stripe: #E86048;
+  --color-graffiti-stripe: #E86048;
 
-  --experience-card: #FFFFFF02;
-  --experience-card-selected: #FFFFFF10;
-  --experience-card-border: #FFFFFF10;
+  --color-experience-card: #FFFFFF02;
+  --color-experience-card-selected: #FFFFFF10;
+  --color-experience-card-border: #FFFFFF10;
 
-  --project-card: #151515;
-  --project-card-stroke: #262626;
-  --project-card-text: #D4D4D4;
-  --project-card-button-icon: #464F66;
+  --color-project-card: #151515;
+  --color-project-card-stroke: #262626;
+  --color-project-card-version: #9CA3AF;
+  --color-project-card-text: #D4D4D4;
+  --color-project-card-button-icon: #464F66;
+  --color-project-card-stroke-pill: #404040;
 
-  --skills-table-bg: #303030;
-  --skills-table-stroke: #FFFFFF20;
+  --color-skills-table-bg: #303030;
+  --color-skills-table-stroke: #FFFFFF20;
 
-  --contact-me-button: #504D7B;
-  --open-twork-button: #628C5A;
+  --color-contact-me-button: #504D7B;
+  --color-open-twork-button: #628C5A;
 
   --font-modak: "Modak";
   --font-outfit: "Outfit";
