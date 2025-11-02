@@ -1,0 +1,12 @@
+---
+interface Props {
+  bclass: string;
+  text: string;
+  id?: string;
+  
+}
+
+const { bclass, text, id } = Astro.props;
+---
+
+<button class={bclass} id={id}>{text} <slot /></button>
