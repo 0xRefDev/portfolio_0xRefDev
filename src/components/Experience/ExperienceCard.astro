@@ -1,0 +1,34 @@
+---
+import LanguagePill from "../LanguagePill.astro";
+
+interface Props {
+  company: string;
+  position: string;
+  location: string;
+  start_date: string;
+  end_date: string;
+  technologies: string[];
+}
+
+const { company, position, location, start_date, end_date, technologies } =
+  Astro.props;
+---
+
+<article class="py-4 px-3 bg-[#FFF]/10 border-1 border-[#FFF]/10 rounded-lg">
+  <h3 class="font-outfit font-medium">{company || "No existen más experiencias"}</h3>
+  <div class="flex flex-col mt-2 text-[#FFF]/80">
+    <p class="text-sm">{position}</p>
+    <p class="text-sm">{location}</p>
+  </div>
+  <div class="flex flex-wrap  md:px-4 gap-1 mt-2 bg-[#FFF]/6 p-2 rounded-lg w-fit">
+    {
+      technologies.map((tech) => (
+        <LanguagePill
+          language={tech}
+          pclass="bg-[#4C4C4C] border-1 border-[#565656] rounded-full px-3 py-1 text-xs"
+        />
+      ))
+    }
+  </div>
+  <p class="text-sm text-[#FFF]/80 mt-4">{start_date} - {end_date}</p>
+</article>
