@@ -1,0 +1,107 @@
+---
+import { Image } from "astro:assets";
+import bitmates from "@/assets/images/projects/bitmates.webp";
+import digmaster from "@/assets/images/projects/digmaster.webp";
+import pmissions from "@/assets/images/projects/pmissions.webp";
+import p2p from "@/assets/images/projects/p2p.webp";
+import tracker from "@/assets/images/projects/tracker.webp";
+
+import Github from "@/icons/Github.astro";
+import OpenUrl from "@/icons/OpenUrl.astro";
+
+import LanguagePill from "@/components/LanguagePill.astro";
+
+interface Props {
+  name: string;
+  alias: string;
+  description: string;
+  version: number;
+  image: "bitmates" | "digmaster" | "pmissions" | "p2p" | "tracker";
+  link: string;
+  github: string;
+  techs: string[];
+}
+
+const imageMap = {
+  bitmates,
+  digmaster,
+  pmissions,
+  p2p,
+  tracker,
+};
+
+const { name, alias, description, version, image, link, github, techs } =
+  Astro.props;
+
+const normalizedTechs = techs.map((tech) => {
+  const techMap = {
+    "Tailwind CSS": "tailwind",
+    React: "react",
+    "Node.js": "node",
+    Express: "express",
+    MySQL: "mysql",
+    CSS: "css",
+    HTML: "html",
+    JavaScript: "javascript",
+  };
+  return techMap[tech] || tech.toLowerCase();
+});
+---
+
+<article
+  class="bg-project-card p-4 w-[25rem] mx-auto md:w-[22rem] h-[28rem] rounded-2xl flex flex-col gap-3 shadow-xl border-2 border-project-card-stroke select-none relative"
+>
+  <header class="flex flex-col gap-[0.10rem]">
+    <h2 class="text-[1.25rem] font-outfit font-bold uppercase">{name}</h2>
+    <p class="text-[0.875rem] font-outfit text-project-card-version">
+      <span class="uppercase">{alias}</span> // v{version}.0
+    </p>
+  </header>
+
+  <div class="flex overflow-hidden h-[11rem] rounded-xl border-1 border-secondary-blue/15">
+    <Image
+      src={imageMap[image]}
+      alt={`Image of ${name} project`}
+      class="w-full h-full aspect-square select-none hover:scale-110 transition-transform duration-200"
+    />
+  </div>
+
+  <p class="text-project-card-text text-sm">{description}</p>
+
+  <div>
+    <ul class="flex gap-1 flex-wrap">
+      {
+        techs.map((tech, index) => {
+          const normalizedTech = normalizedTechs[index];
+          return (
+            <li>
+              <LanguagePill
+                language={tech}
+                iconName={normalizedTech}
+                pclass="text-[0.85rem] font-outfit text-white bg-project-card-stroke flex items-center gap-2"
+                withIcon={true}
+              />
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
+
+  <div class="flex gap-2 justify-end items-end absolute bottom-3.5 right-2.5">
+    <a
+      href={github}
+      target="_blank"
+      class="text-black bg-white py-1 px-2 rounded-full font-outfit flex items-center gap-1 hover:bg-white/80 transition-colors text-sm"
+    >
+      GitHub <Github width="18" height="18" />
+    </a>
+    <a
+      href={link}
+      target="_blank"
+      class="text-black bg-white py-1 px-2 rounded-full font-outfit flex items-center gap-1 hover:bg-white/80 transition-colors text-sm"
+    >
+      View Project <OpenUrl width="18" height="18" />
+    </a>
+  </div>
+</article>
