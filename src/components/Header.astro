@@ -8,36 +8,43 @@ import Star from "@/icons/Star.astro";
 // Components
 import { ChangeLanguage } from "./Header/ChangeLanguage.jsx";
 import { AsideMenuButton } from "./Header/AsideMenuButton.jsx";
-import Button from "@/components/Button.astro";
 ---
 
 <header
-  id="main-header"
-  class="fixed top-0 z-50 w-full flex h-[70px] transition-colors duration-[100ms] overflow-hidden"
+  class="fixed top-0 left-0 right-0 z-50 flex h-[80px] transition-colors duration-[100ms] overflow-hidden w-full mx-auto lg:rounded-b-xl justify-between lg:gap-24 max-w-[1180px]"
 >
-  <section class="flex items-center gap-2 p-4">
-    <img
-      src={PORTRAIT.src}
-      alt="Portrait logo - 0xRef.dev"
-      class="hidden sm:block w-12 h-auto aspect-square rounded-full"
-    />
-    <h1
-      class="font-modak text-shadow-2xs text-shadow-[#000] text-[24px] transition-colors duration-300"
-      id="0x-title"
+  <section class="flex items-center pl-1">
+    <div
+      class="flex items-center gap-2 py-2 px-4 md:px-6 rounded-full mt-1 bg-[#FFF]/15 backdrop-blur-md shadow-md"
     >
-      0xRef.dev
-    </h1>
+      <img
+        src={PORTRAIT.src}
+        alt="Portrait logo - 0xRef.dev"
+        class="hidden sm:block w-12 h-auto aspect-square rounded-full"
+      />
+      <div class="flex flex-col">
+        <h1
+          class="font-modak text-shadow-2xs text-shadow-[#000] text-[24px] transition-colors duration-300"
+          id="0x-title"
+        >
+          0xRef.dev
+        </h1>
+        <p class="text-[12px] font-regular font-outfit">Full Stack Developer</p>
+      </div>
+    </div>
   </section>
   <section
     id="secondary-header"
-    class="flex flex-1 justify-end pr-1 md:justify-between md:pl-8 md:pr-2 items-center bg-white w-full h-full rounded-bl-full"
+    class="flex flex-1 justify-end pr-1 md:justify-between md:pl-8 md:pr-2 items-center bg-white w-full h-full rounded-bl-full max-w-[1000px] md:gap-8"
   >
-    <article class="hidden md:flex gap-2 justify-self-start">
+    <article
+      class="hidden md:flex lg:gap-2 lg:ml-[1rem] gap-1 justify-self-start"
+    >
       {
         links.map(({ href, text }) => (
           <a
             href={href}
-            class="font-regular font-outfit text-md text-[#0F1A38] flex gap-1 lg:gap-2 items-center"
+            class="font-regular font-outfit text-md text-[#0F1A38] flex gap-1 items-center lg:text-lg"
           >
             <Star width="25" height="25" />
             {text}
@@ -52,20 +59,3 @@ import Button from "@/components/Button.astro";
     </article>
   </section>
 </header>
-
-
-<script is:inline>
-  const header = document.getElementById("main-header");
-
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 0) {
-      header.classList.add("bg-[#FFF]/10");
-      header.classList.add("shadow-lg");
-      header.classList.add("backdrop-blur-sm");
-    } else {
-      header.classList.remove("bg-[#FFF]/10");
-      header.classList.remove("shadow-lg");
-      header.classList.remove("backdrop-blur-sm");
-    }
-  });
-</script>
