@@ -1,0 +1,45 @@
+---
+import GraffitiStroke from "@/components/GraffitiStroke.astro";
+import ProjectCard from "@/components/Projects/ProjectCard.astro";
+
+import { projects } from "@/lib/data";
+---
+
+<article
+  id="projects"
+  class="py-6 lg:pt-8 md:py-8 w-full max-w-[1180px] mx-auto"
+>
+  <div
+    class="flex items-center justify-center gap-2 md:gap-4 md:justify-between md:pr-12 lg:pr-0 lg:gap-35 lg:justify-center"
+  >
+    <GraffitiStroke
+      sclass="w-[20rem] h-[2rem] md:w-[27rem] lg:w-[36rem] rotate-180 text-[#E86048]"
+    />
+    <h2
+      class="text-center font-modak text-3xl md:text-5xl text-shadow-2xs text-shadow-[#000]"
+    >
+      My Projects
+    </h2>
+
+    <GraffitiStroke sclass="w-[20rem] h-[2rem] block md:hidden text-[#E86048]" />
+  </div>
+
+  <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-4">
+    {
+      projects.map(
+        ({ name, alias, description, version, image, link, github, techs }) => (
+          <ProjectCard
+            name={name}
+            alias={alias}
+            description={description}
+            version={version}
+            image={image}
+            link={link}
+            github={github}
+            techs={techs}
+          />
+        )
+      )
+    }
+  </section>
+</article>
