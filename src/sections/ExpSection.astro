@@ -1,0 +1,161 @@
+---
+import ExperienceCard from "@/components/Experience/ExperienceCard.astro";
+import Button from "@/components/Button.astro";
+
+import { experience } from "@/lib/data";
+
+import vignette from "@/assets/images/vignette.webp";
+
+---
+
+<section
+  id="experience"
+  class="grid place-content-center md:grid-cols-2 gap-4 px-3 py-6 md:py-8 max-w-[1180px] mx-auto h-fit"
+>
+  <h2
+    class="w-full text-center font-modak text-3xl md:text-5xl text-shadow-2xs text-shadow-[#000] [grid-area:title]"
+  >
+    Experiencia
+  </h2>
+  <div
+    class="bg-[#121212] h-fit border-1 border-[#7F7F7F]/30 p-2 rounded-xl flex flex-col gap-2 shadow-[#000]/50 shadow-lg [grid-area:cards]"
+  >
+    {
+      experience.map((exp) => (
+        <ExperienceCard
+          company={exp.company}
+          position={exp.position}
+          location={exp.location}
+          start_date={exp.start_date}
+          end_date={exp.end_date}
+          technologies={exp.technologies}
+        />
+      ))
+    }
+  </div>
+  <div
+    id="exp-details-container"
+    class="transition-all duration-800 [grid-area:details] h-fit bg-white/8 pt-4 px-4 rounded-xl backdrop-blur-md overflow-hidden"
+  >
+    {
+      experience.length > 0 && (
+        <article
+          class="transition-all duration-800 bg-[#333333]"
+          id="exp-details"
+        >
+          {experience[0].description.map((item) => (
+            <div class="text-white/90">
+              {item.problem && (
+                <div class="mb-3">
+                  <h4 class="font-semibold flex items-center gap-2 text-white mb-2">
+                    <img
+                      src={vignette.src}
+                      alt="Detail list vignette"
+                      class="size-6"
+                    />
+                    Problema
+                  </h4>
+                  <p class="text-sm leading-relaxed">{item.problem}</p>
+                </div>
+              )}
+              {item.methodology && (
+                <div class="mb-3">
+                  <h4 class="font-semibold flex items-center gap-2 text-white mb-2">
+                    <img
+                      src={vignette.src}
+                      alt="Detail list vignette"
+                      class="size-6"
+                    />
+                    Metodología
+                  </h4>
+                  <p class="text-sm leading-relaxed">{item.methodology}</p>
+                </div>
+              )}
+              {item.solution && (
+                <div class="mb-3">
+                  <h4 class="font-semibold flex items-center gap-2 text-white mb-2">
+                    <img
+                      src={vignette.src}
+                      alt="Detail list vignette"
+                      class="size-6"
+                    />
+                    Solución
+                  </h4>
+                  <ul class="text-sm leading-relaxed list-disc list-inside space-y-1">
+                    {item.solution.map((sol) => (
+                      <li>{sol}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              {item.result && (
+                <div class="mb-3">
+                  <h4 class="font-semibold flex items-center gap-2 text-white mb-2">
+                    <img
+                      src={vignette.src}
+                      alt="Detail list vignette"
+                      class="size-6"
+                    />
+                    Resultado
+                  </h4>
+                  <ul class="text-sm leading-relaxed list-disc list-inside space-y-1">
+                    {item.result.map((res) => (
+                      <li>{res}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          ))}
+        </article>
+      )
+    }
+    <div class="w-full bg-[#333] relative z-20 h-[3rem]">
+      <Button
+        bclass="flex relative z-20 items-center justify-center gap-2 bg-white/90 text-[#0F1A38] w-full p-2 rounded-full font-outfit font-bold shadow-[#000]/20 shadow-md cursor-pointer hover:bg-slate-600 hover:text-white transition-colors"
+        id="exp-details-scroll-button"
+        text="Ver menos"
+      />
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  const detailsContainer = document.getElementById("exp-details-container");
+  const details = document.getElementById("exp-details");
+  const viewMoreButton = document.getElementById("exp-details-scroll-button");
+
+  viewMoreButton.addEventListener("click", () => {
+    detailsContainer.classList.toggle("h-[19rem]");
+    details.classList.toggle("h-[10rem]");
+    details.classList.toggle("md:h-[9.3rem]");
+    viewMoreButton.innerText =
+      viewMoreButton.innerText === "Ver menos" ? "Ver más" : "Ver menos";
+  });
+</script>
+
+<style is:inline>
+  #experience {
+    grid-template-areas:
+      "title"
+      "cards"
+      "details";
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  #details,
+  #exp-details-container {
+    interpolate-size: allow-keywords;
+  }
+
+  @media (min-width: 768px) {
+    #experience {
+      grid-template-areas:
+        "title title"
+        "cards details";
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto 1fr;
+    }
+  }
+</style>
